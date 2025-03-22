@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { SearchForm } from "@/components/SearchForm";
 import { SummaryCard } from "@/components/SummaryCard";
@@ -6,6 +5,7 @@ import { NewsCard } from "@/components/NewsCard";
 import { SentimentChart } from "@/components/SentimentChart";
 import { fetchNewsAnalysis, generateTTS, type AnalysisResponse } from "@/lib/api";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 import { BarChart, Newspaper, ScanSearch, Volume2 } from "lucide-react";
@@ -22,10 +22,8 @@ const Index = () => {
     setCompanyName(company);
     
     try {
-      // Fetch news analysis
       const data = await fetchNewsAnalysis(company);
       
-      // Generate TTS in Hindi (optional step)
       const summaryText = `${company} की समाचार विश्लेषण के अनुसार, कुल ${data.articles.length} लेख प्राप्त हुए। समग्र भावना ${data.overallSentiment.label} है, जिसका स्कोर ${data.overallSentiment.score.toFixed(2)} है।`;
       const audioUrl = await generateTTS(summaryText, "hi");
       

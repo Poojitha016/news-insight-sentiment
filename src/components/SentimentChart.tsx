@@ -56,11 +56,12 @@ export function SentimentChart({ articles }: SentimentChartProps) {
                 <Tooltip
                   content={({ active, payload }) => {
                     if (active && payload && payload.length) {
+                      const value = payload[0].value as number;
                       return (
                         <div className="glass p-2 rounded-md text-xs shadow-md border border-gray-200">
                           <p className="font-medium mb-1">{payload[0].payload.title}</p>
                           <p>Source: <span className="font-medium">{payload[0].payload.source}</span></p>
-                          <p>Sentiment: <span className="font-medium">{payload[0].value.toFixed(2)}</span></p>
+                          <p>Sentiment: <span className="font-medium">{value.toFixed(2)}</span></p>
                         </div>
                       );
                     }
